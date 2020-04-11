@@ -7,7 +7,7 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-//A struct to rep students
+//A struct to rep teachers
 type Teacher struct {
 	gorm.Model
 	Name    string `json:"name"`
@@ -24,7 +24,7 @@ returns message and true if the requirement is met
 func (teacher *Teacher) Validate() (map[string]interface{}, bool) {
 
 	if teacher.Name == "" {
-		return u.Message(false, "Student name should be on the payload"), false
+		return u.Message(false, "Teacher name should be on the payload"), false
 	}
 
 	if teacher.DocType == "" {
