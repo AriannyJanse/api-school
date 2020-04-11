@@ -33,11 +33,10 @@ func init() {
 	}
 
 	db = conn
-	db.Debug().AutoMigrate(&Account{}, &Student{}) //Database migration
+	db.Debug().AutoMigrate(&Account{}, &Student{}, &Teacher{}) //Database migration
 }
 
 //returns a handle to the DB object
 func GetDB() *gorm.DB {
 	return db
 }
-
