@@ -1,4 +1,4 @@
-module api-test
+module api-school
 
 go 1.13
 

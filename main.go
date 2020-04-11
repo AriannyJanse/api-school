@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"os"
 
-	"api-test/app"
-	"api-test/controllers"
+	"api-school/app"
+	"api-school/controllers"
 
 	"github.com/gorilla/mux"
 )

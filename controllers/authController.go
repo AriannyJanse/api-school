@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"api-test/models"
-	u "api-test/utils"
+	"api-school/models"
+	u "api-school/utils"
 	"encoding/json"
 	"net/http"
 )
