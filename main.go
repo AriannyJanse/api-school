@@ -29,9 +29,14 @@ func main() {
 
 	api.HandleFunc("/user/login", controllers.Authenticate).Methods(http.MethodPost)
 	api.HandleFunc("/user/new", controllers.CreateAccount).Methods(http.MethodPost)
+
 	api.HandleFunc("/user/students", controllers.GetAllStudents).Methods(http.MethodGet)
 	api.HandleFunc("/user/students/{doc_num}", controllers.GetStudentByDocument).Methods(http.MethodGet)
 	api.HandleFunc("/user/students/new", controllers.CreateStudent).Methods(http.MethodPost)
+
+	api.HandleFunc("/user/teachers", controllers.GetAllTeachers).Methods(http.MethodGet)
+	api.HandleFunc("/user/teachers/{doc_num}", controllers.GetTeacherByDocument).Methods(http.MethodGet)
+	api.HandleFunc("/user/teachers/new", controllers.CreateTeacher).Methods(http.MethodPost)
 
 	log.Fatal(http.ListenAndServe(":"+port, r))
 }
