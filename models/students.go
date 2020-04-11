@@ -1,7 +1,7 @@
 package models
 
 import (
-	u "api-test/utils"
+	u "api-school/utils"
 	"fmt"
 
 	"github.com/jinzhu/gorm"

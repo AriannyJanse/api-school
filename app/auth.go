@@ -1,8 +1,8 @@
 package app
 
 import (
-	"api-test/models"
-	u "api-test/utils"
+	"api-school/models"
+	u "api-school/utils"
 	"context"
 	"fmt"
 	"net/http"
