@@ -47,3 +47,16 @@ var GetStudentByDocument = func(w http.ResponseWriter, r *http.Request) {
 	resp["data"] = data
 	u.Respond(w, resp)
 }
+
+var DeleteStudentByDocNum = func(w http.ResponseWriter, r *http.Request) {
+
+	params := mux.Vars(r)
+	docNum, err := strconv.Atoi(params["doc_num"])
+	if err != nil {
+		//The passed path parameter is not an integer
+		u.Respond(w, u.Message(false, "There was an error in your request"))
+		return
+	}
+
+	u.Respond(w, models.DeleteStudentByDocNum(uint(docNum)))
+}

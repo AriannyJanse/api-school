@@ -81,3 +81,15 @@ func GetStudents() []*Student {
 
 	return students
 }
+
+func DeleteStudentByDocNum(docNum uint) map[string]interface{} {
+
+	err := db.Unscoped().Where("doc_num = ?", docNum).Delete(&Student{})
+
+	if err.Error != nil {
+		fmt.Println(err.Error)
+		return u.Message(false, "There was an issue trying to delete the document")
+	}
+
+	return u.Message(true, "The student was deleted")
+}
