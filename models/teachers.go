@@ -93,3 +93,15 @@ func DeleteTeacherByDocNum(docNum uint) map[string]interface{} {
 
 	return u.Message(true, "The teacher was deleted")
 }
+
+func (teacher *Teacher) UpdateTeacherByDocNum(docNum uint) map[string]interface{} {
+
+	err := db.Model(&teacher).Updates(Teacher{Name: teacher.Name, DocType: teacher.DocType, Course: teacher.Course})
+
+	if err.Error != nil {
+		fmt.Println(err.Error)
+		return u.Message(false, "There was an issue trying to update the document")
+	}
+
+	return u.Message(true, "The teacher was updated")
+}

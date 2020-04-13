@@ -60,3 +60,23 @@ var DeleteTeacherByDocNum = func(w http.ResponseWriter, r *http.Request) {
 
 	u.Respond(w, models.DeleteTeacherByDocNum(uint(docNum)))
 }
+
+var UpdateTeacherByDocNum = func(w http.ResponseWriter, r *http.Request) {
+
+	params := mux.Vars(r)
+	docNum, err := strconv.Atoi(params["doc_num"])
+	if err != nil {
+		//The passed path parameter is not an integer
+		u.Respond(w, u.Message(false, "There was an error in your request"))
+		return
+	}
+
+	teacher := &models.Teacher{}
+	err = json.NewDecoder(r.Body).Decode(teacher)
+	if err != nil {
+		u.Respond(w, u.Message(false, "Error while decoding request body"))
+		return
+	}
+
+	u.Respond(w, teacher.UpdateTeacherByDocNum(uint(docNum)))
+}

@@ -39,6 +39,7 @@ func main() {
 	api.HandleFunc("/user/teachers/{doc_num}", controllers.GetTeacherByDocument).Methods(http.MethodGet)
 	api.HandleFunc("/user/teachers/new", controllers.CreateTeacher).Methods(http.MethodPost)
 	api.HandleFunc("/user/teachers/{doc_num}", controllers.DeleteTeacherByDocNum).Methods(http.MethodDelete)
+	api.HandleFunc("/user/teachers/{doc_num}", controllers.UpdateTeacherByDocNum).Methods(http.MethodPut)
 
 	log.Fatal(http.ListenAndServe(":"+port, r))
 }
