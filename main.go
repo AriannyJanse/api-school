@@ -34,6 +34,7 @@ func main() {
 	api.HandleFunc("/user/students/{doc_num}", controllers.GetStudentByDocument).Methods(http.MethodGet)
 	api.HandleFunc("/user/students/new", controllers.CreateStudent).Methods(http.MethodPost)
 	api.HandleFunc("/user/students/{doc_num}", controllers.DeleteStudentByDocNum).Methods(http.MethodDelete)
+	api.HandleFunc("/user/students/{doc_num}", controllers.UpdateStudentByDocNum).Methods(http.MethodPut)
 
 	api.HandleFunc("/user/teachers", controllers.GetAllTeachers).Methods(http.MethodGet)
 	api.HandleFunc("/user/teachers/{doc_num}", controllers.GetTeacherByDocument).Methods(http.MethodGet)
