@@ -36,7 +36,7 @@ func (teacher *Teacher) Validate() (map[string]interface{}, bool) {
 	}
 
 	if teacher.Course <= "" {
-		return u.Message(false, "Course shuold be on the payload"), false
+		return u.Message(false, "Course should be on the payload"), false
 	}
 
 	if teacher.UserId <= 0 {
@@ -80,4 +80,16 @@ func GetTeachers() []*Teacher {
 	}
 
 	return teachers
+}
+
+func DeleteTeacherByDocNum(docNum uint) map[string]interface{} {
+
+	err := db.Unscoped().Where("doc_num = ?", docNum).Delete(&Teacher{})
+
+	if err.Error != nil {
+		fmt.Println(err.Error)
+		return u.Message(false, "There was an issue trying to delete the document")
+	}
+
+	return u.Message(true, "The teacher was deleted")
 }
