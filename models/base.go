@@ -23,8 +23,14 @@ func init() {
 	dbName := os.Getenv("db_name")
 	dbHost := os.Getenv("db_host")
 	dbPort := os.Getenv("db_port")
+	dbType := os.Getenv("db_type")
 
-	dbUri := fmt.Sprintf("%s:%s@(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local", username, password, dbHost, dbPort, dbName) //Build connection string
+	if dbType == "mysql" {
+		dbUri := fmt.Sprintf("%s:%s@(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local", username, password, dbHost, dbPort, dbName) //Build connection string
+	} else {
+		dbUri := fmt.Sprintf("host=%s user=%s dbname=%s sslmode=disable password=%s", dbHost, username, dbName, password) //Build connection string
+	}
+
 	fmt.Println(dbUri)
 
 	conn, err := gorm.Open("mysql", dbUri)
