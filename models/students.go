@@ -93,3 +93,15 @@ func DeleteStudentByDocNum(docNum uint) map[string]interface{} {
 
 	return u.Message(true, "The student was deleted")
 }
+
+func (student *Student) UpdateStudentByDocNum(docNum uint) map[string]interface{} {
+
+	err := db.Model(&student).Updates(Student{Name: student.Name, DocType: student.DocType, Grade: student.Grade})
+
+	if err.Error != nil {
+		fmt.Println(err.Error)
+		return u.Message(false, "There was an issue trying to update the document")
+	}
+
+	return u.Message(true, "The student was updated")
+}
