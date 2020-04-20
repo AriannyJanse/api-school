@@ -35,7 +35,7 @@ func init() {
 
 	fmt.Println(dbURI)
 
-	conn, err := gorm.Open("mysql", dbURI)
+	conn, err := gorm.Open(dbType, dbURI)
 	if err != nil {
 		fmt.Print(err)
 	}
