@@ -20,7 +20,7 @@ func notFound(w http.ResponseWriter, r *http.Request) {
 func main() {
 	r := mux.NewRouter()
 	r.Use(app.JwtAuthentication) //attach JWT auth middleware
-	port := os.Getenv("app_port")
+	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8000" //localhost
 	}
