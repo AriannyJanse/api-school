@@ -9,6 +9,7 @@ import (
 	"api-school/controllers"
 
 	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 )
 
 func notFound(w http.ResponseWriter, r *http.Request) {
@@ -42,5 +43,24 @@ func main() {
 	api.HandleFunc("/user/teachers/{doc_num}", controllers.DeleteTeacherByDocNum).Methods(http.MethodDelete)
 	api.HandleFunc("/user/teachers/{doc_num}", controllers.UpdateTeacherByDocNum).Methods(http.MethodPut)
 
-	log.Fatal(http.ListenAndServe(":"+port, r))
+	//cors optionsGoes Below
+	corsOpts := cors.New(cors.Options{
+		AllowedOrigins: []string{os.Getenv("allowed_origins")}, //you service is available and allowed for this base url
+		AllowedMethods: []string{
+			http.MethodGet, //http methods for your app
+			http.MethodPost,
+			http.MethodPut,
+			http.MethodPatch,
+			http.MethodDelete,
+			http.MethodOptions,
+			http.MethodHead,
+		},
+
+		AllowedHeaders: []string{
+			"*", //or you can your header key values which you are using in your application
+
+		},
+	})
+
+	log.Fatal(http.ListenAndServe(":"+port, corsOpts.Handler(r)))
 }
